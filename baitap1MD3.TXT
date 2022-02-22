@@ -1,0 +1,59 @@
+create database cuonghandsome;
+use cuonghandsome;
+create table students(
+    id int primary key auto_increment,
+    name varchar(50) not null ,
+    address varchar(50) not null ,
+    sex bit default 1 not null ,
+    age int not null check ( age between 18 and 25),
+    email varchar(50) not null unique ,
+    phone varchar(10) not null
+);
+
+create table classes(
+    id int primary key auto_increment,
+    name varchar(50) not null unique
+);
+
+alter table students add class_id int ; #Bổ sung cột class_id vào class students
+alter table students add foreign key (class_id) references classes(id); # Khóa ngoại class students và class classes
+insert into classes(name) value ('C1121G1');
+insert into classes(name) value ('C1121G2');
+insert into classes(name) value ('C1121G3');
+insert into classes(name) value ('C1121G4');
+insert into classes(name) value ('C1121G5');
+
+insert into students(name, address, sex, age, email, phone, class_id) value ('Cường','Đắk lak',1,18,'tuancuong15yghgf682003@gmail.com','0364113841',1);
+insert into students(name, address, sex, age, email, phone, class_id) value ('Cường2','Đắk lak2',1,19,'tuancuong2trrjyh682003@gmail.com','0364113841',2);
+insert into students(name, address, sex, age, email, phone, class_id) value ('Cường3','Đắk lak3',1,20,'tuancuong6urể2003@gmail.com','0364113841',1);
+insert into students(name, address, sex, age, email, phone, class_id) value ('Cường4','Đắk lak4',1,21,'tuancuong68ư2003@gmail.com','0364113841',2);
+insert into students(name, address, sex, age, email, phone, class_id) value ('Cường5','Đắk lak5',1,22,'tuancuong68ư2003@gmail.com','0364113841',2);
+insert into students(name, address, sex, age, email, phone, class_id) value ('Cường6','Đắk lak6',1,23,'tuancauong682003@gmail.com','0364113841',1);
+insert into students(name, address, sex, age, email, phone, class_id) value ('Cường7','Đắk lak7',1,24,'tuancuosfngs682a003@gmail.com','0364113841',2);
+insert into students(name, address, sex, age, email, phone, class_id) value ('Cường8','Đắk lak8',1,24,'tuancuosdng6s82a003@gmail.com','0364113841',1);
+insert into students(name, address, sex, age, email, phone, class_id) value ('Cường9','Đắk lak9',1,24,'tuancudsfong682003@gmail.com','0364113841',2);
+insert into students(name, address, sex, age, email, phone, class_id) value ('Cường10','Đắk lak10',1,24,'tuancsuong682003@gmail.com','0364113841',1);
+
+delete from students where id = 11; #Xóa theo id
+
+select *
+from students ; #Hiển thị tất cả học viên
+
+select *
+from students where sex = 1; #hiển thị tất cả học viên nam
+
+select *
+from students where age <= 20; #hiển thị những học viên nhỏ hơn hoặc bằng 20 tuổi
+
+select *
+from students where address = 'Đắk lak'; #Hiển thị những học viên có quê ở đăk lak
+
+select *
+from students where address <> 'Đắk lak'; # Hiển thị những học viên có quê không phải đăk lak
+
+select *
+from students where name like 'C%'; #Hiển thị học viên có tên bắt đầu bằng chữ C
+
+select *
+from students where name = 'Cường'; #Hiển thị học viên có tên cường
+
